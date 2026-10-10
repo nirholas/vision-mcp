@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>@three-ws/vision-mcp: Let any AI agent see</title>
+<meta name="description" content="Let any AI agent see — analyze and describe images through the three.ws vision pipeline. Free NVIDIA NIM VLMs first, with an automatic server-side paid backstop. Pass an image URL or base64 and get a structured, natural-language read. Read-only, no key required.">
+<link rel="canonical" href="https://nirholas.github.io/vision-mcp/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="three.ws">
+<meta property="og:title" content="@three-ws/vision-mcp">
+<meta property="og:description" content="Let any AI agent see — analyze and describe images through the three.ws vision pipeline. Free NVIDIA NIM VLMs first, with an automatic server-side paid backstop. Pass an image URL or base64 and get a structured, natural-language read. Read-only, no key required.">
+<meta property="og:url" content="https://nirholas.github.io/vision-mcp/">
+<meta property="og:image" content="https://nirholas.github.io/vision-mcp/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="@three-ws/vision-mcp">
+<meta name="twitter:description" content="Let any AI agent see — analyze and describe images through the three.ws vision pipeline. Free NVIDIA NIM VLMs first, with an automatic server-side paid backstop. Pass an image URL or base64 and get a structured, natural-language read. Read-only, no key required.">
+<meta name="twitter:image" content="https://nirholas.github.io/vision-mcp/og.png">
+<meta name="keywords" content="mcp, three.ws, vision, vlm, image-understanding, multimodal, nvidia-nim, describe-image, model-context-protocol, mcp-server, ai-agents">
+<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+<link rel="icon" href="https://three.ws/three-ws-mcp-icon.svg" type="image/svg+xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"@three-ws/vision-mcp","description":"Let any AI agent see — analyze and describe images through the three.ws vision pipeline. Free NVIDIA NIM VLMs first, with an automatic server-side paid backstop. Pass an image URL or base64 and get a structured, natural-language read. Read-only, no key required.","codeRepository":"https://github.com/nirholas/vision-mcp","programmingLanguage":"JavaScript","license":"https://spdx.org/licenses/Apache-2.0.html","version":"0.1.2","url":"https://nirholas.github.io/vision-mcp/","author":{"@type":"Organization","name":"three.ws","url":"https://three.ws"},"keywords":"mcp, three.ws, vision, vlm, image-understanding, multimodal, nvidia-nim, describe-image, model-context-protocol, mcp-server, ai-agents"}</script>
+<style>:root{--bg:#fff;--fg:#111418;--mut:#586069;--line:#e3e6ea;--acc:#2563eb;--code:#f4f6f8;--card:#fafbfc}
+@media(prefers-color-scheme:dark){:root{--bg:#0b0d10;--fg:#e8eaed;--mut:#9aa3ad;--line:#232830;--acc:#6ea0ff;--code:#14181d;--card:#10141a}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--acc)}a:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:4px}
+header.bar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-in{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-weight:700;text-decoration:none;color:var(--fg)}
+.bar nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+.bar nav a{color:var(--mut);text-decoration:none;transition:color .15s}.bar nav a:hover{color:var(--fg)}
+.hero{max-width:1100px;margin:0 auto;padding:48px 16px 24px}
+.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.15;margin:0 0 12px;letter-spacing:-.02em}
+.hero p{color:var(--mut);max-width:70ch;font-size:18px;margin:0 0 24px}
+.install{display:flex;align-items:center;gap:8px;max-width:620px;background:var(--code);border:1px solid var(--line);border-radius:10px;padding:6px 6px 6px 14px}
+.install code{flex:1;overflow-x:auto;white-space:nowrap;font:14px ui-monospace,SFMono-Regular,Menlo,monospace}
+.install button{border:0;background:var(--acc);color:#fff;border-radius:7px;padding:8px 14px;font:600 13px system-ui;cursor:pointer;transition:transform .12s,opacity .12s}
+.install button:hover{opacity:.9}.install button:active{transform:scale(.96)}
+.cta{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.cta a{padding:9px 16px;border:1px solid var(--line);border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;color:var(--fg);transition:border-color .15s,transform .15s}
+.cta a:hover{border-color:var(--acc);transform:translateY(-1px)}.cta a.pri{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.layout{max-width:1100px;margin:0 auto;padding:8px 16px 64px;display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:40px}
+@media(max-width:860px){.layout{grid-template-columns:minmax(0,1fr)}.toc{display:none}}
+.toc{position:sticky;top:76px;align-self:start;font-size:14px;border-left:1px solid var(--line);padding-left:16px}
+.toc p{margin:0 0 8px;font-weight:700;color:var(--mut);text-transform:uppercase;font-size:12px;letter-spacing:.06em}
+.toc ul{list-style:none;margin:0;padding:0}.toc li{margin:6px 0}.toc a{color:var(--mut);text-decoration:none}.toc a:hover{color:var(--fg)}
+main{min-width:0;overflow-wrap:anywhere}main pre code{overflow-wrap:normal}main img{max-width:100%;height:auto}
+main h2{margin-top:2.2em;padding-bottom:.3em;border-bottom:1px solid var(--line)}
+.anchor{margin-left:-1.1em;padding-right:.4em;text-decoration:none;opacity:0;color:var(--mut)}h2:hover .anchor,h3:hover .anchor,h4:hover .anchor{opacity:1}
+pre{background:var(--code);border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:14px;line-height:1.5}
+code{font:0.9em ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--code);padding:.15em .35em;border-radius:5px}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%}th,td{border:1px solid var(--line);padding:8px 12px;text-align:left}th{background:var(--card)}
+blockquote{margin:1em 0;padding:.2em 1em;border-left:4px solid var(--line);color:var(--mut)}
+footer{border-top:1px solid var(--line);color:var(--mut);font-size:14px}
+.foot-in{max-width:1100px;margin:0 auto;padding:24px 16px;display:flex;gap:16px;flex-wrap:wrap}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}</style>
+</head>
+<body>
+<header class="bar"><div class="bar-in">
+<a class="brand" href="https://nirholas.github.io/vision-mcp/">@three-ws/vision-mcp</a>
+<nav aria-label="Project links"><a href="https://github.com/nirholas/vision-mcp">GitHub</a><a href="https://www.npmjs.com/package/@three-ws/vision-mcp">npm</a><a href="llms.txt">llms.txt</a><a href="https://three.ws">three.ws</a></nav>
+</div></header>
+<section class="hero">
+<h1>@three-ws/vision-mcp</h1>
+<p>Let any AI agent see — analyze and describe images through the three.ws vision pipeline. Free NVIDIA NIM VLMs first, with an automatic server-side paid backstop. Pass an image URL or base64 and get a structured, natural-language read. Read-only, no key required.</p>
+<div class="install" role="group" aria-label="Install command"><code>npx -y @three-ws/vision-mcp</code><button type="button" data-copy="npx -y @three-ws/vision-mcp">Copy</button></div>
+<div class="cta"><a class="pri" href="https://github.com/nirholas/vision-mcp">View on GitHub</a><a href="https://github.com/nirholas/vision-mcp/stargazers">Star the repo</a><a href="https://registry.modelcontextprotocol.io/?q=io.github.nirholas%2Fvision-mcp">MCP Registry</a></div>
+</section>
+<div class="layout">
+<main id="content"><p align="center"><strong>Let any AI agent see — analyze and describe images through the three.ws vision pipeline, free-first and no key required.</strong></p><p align="center">
+  <a href="https://www.npmjs.com/package/@three-ws/vision-mcp"><img alt="npm" src="https://img.shields.io/npm/v/@three-ws/vision-mcp?logo=npm&color=cb3837"></a>
+  <img alt="license" src="https://img.shields.io/npm/l/@three-ws/vision-mcp?color=3b82f6">
+  <img alt="node" src="https://img.shields.io/node/v/@three-ws/vision-mcp?color=339933&logo=node.js">
+  <a href="https://registry.modelcontextprotocol.io/?q=io.github.nirholas"><img alt="MCP Registry" src="https://img.shields.io/badge/MCP%20Registry-io.github.nirholas-0ea5e9"></a>
+  <a href="https://three.ws"><img alt="three.ws" src="https://img.shields.io/badge/built%20by-three.ws-000"></a>
+</p><hr>
+<blockquote>
+<p>A <a href="https://modelcontextprotocol.io">Model Context Protocol</a> server that gives any AI assistant <strong>image understanding</strong> over stdio. Pass an image as a public URL or base64 and the agent can read the text in a screenshot, identify what&#39;s in a scene, critique a 3D/avatar render, or write alt-text — all live, read-only, no key required.</p>
+</blockquote>
+<p>Every answer comes from the three.ws vision pipeline: <strong>free NVIDIA NIM vision models lead every request</strong>, with an automatic server-side paid backstop behind them. The caller never pays and needs no provider key — point <code>THREE_WS_BASE</code> at a deployment and go.</p>
+<h2 id="install"><a class="anchor" href="#install" aria-label="Link to this section">#</a>Install</h2>
+<pre><code class="language-bash">npm install @three-ws/vision-mcp
+</code></pre>
+<p>Or run with <code>npx</code> (no install):</p>
+<pre><code class="language-bash">npx @three-ws/vision-mcp
+</code></pre>
+<h2 id="quick-start"><a class="anchor" href="#quick-start" aria-label="Link to this section">#</a>Quick start</h2>
+<p><strong>Claude Code</strong>, one line:</p>
+<pre><code class="language-bash">claude mcp add vision -- npx -y @three-ws/vision-mcp
+</code></pre>
+<p><strong>Claude Desktop / Cursor</strong> (<code>claude_desktop_config.json</code> or <code>mcp.json</code>):</p>
+<pre><code class="language-json">{
+	&quot;mcpServers&quot;: {
+		&quot;vision&quot;: {
+			&quot;command&quot;: &quot;npx&quot;,
+			&quot;args&quot;: [&quot;-y&quot;, &quot;@three-ws/vision-mcp&quot;]
+		}
+	}
+}
+</code></pre>
+<p>Inspect the surface with the MCP Inspector:</p>
+<pre><code class="language-bash">npx -y @modelcontextprotocol/inspector npx @three-ws/vision-mcp
+</code></pre>
+<h2 id="tools"><a class="anchor" href="#tools" aria-label="Link to this section">#</a>Tools</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Type</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>analyze_image</code></td>
+<td>read-only</td>
+<td>Answer a prompt about an image — visual Q&amp;A, OCR (read a screenshot), classification, or critiquing a render.</td>
+</tr>
+<tr>
+<td><code>describe_image</code></td>
+<td>read-only</td>
+<td>Natural-language description for alt text or a caption, steerable by detail level and focus.</td>
+</tr>
+<tr>
+<td><code>get_vision_status</code></td>
+<td>read-only</td>
+<td>Report whether a vision provider is live and which image formats are accepted. No image, no cost.</td>
+</tr>
+</tbody></table>
+<p>All three tools are read-only — they look at an image, they never store or mutate anything. A VLM is non-deterministic and the live provider chain moves, so none are idempotent.</p>
+<h3 id="input-parameters"><a class="anchor" href="#input-parameters" aria-label="Link to this section">#</a>Input parameters</h3>
+<p><strong><code>analyze_image</code></strong> — <code>prompt</code> (required), and exactly one of <code>imageUrl</code> (public https) or <code>image</code> (base64 / data URI). Optional <code>imageType</code> (for raw base64), <code>maxTokens</code> (16–2048, default 512).</p>
+<p><strong><code>describe_image</code></strong> — exactly one of <code>imageUrl</code> or <code>image</code>. Optional <code>imageType</code>, <code>detail</code> (<code>brief</code> | <code>standard</code> | <code>detailed</code>, default <code>standard</code>), <code>focus</code> (an aspect to emphasize).</p>
+<p><strong><code>get_vision_status</code></strong> — no parameters.</p>
+<h2 id="example"><a class="anchor" href="#example" aria-label="Link to this section">#</a>Example</h2>
+<pre><code class="language-jsonc">// analyze_image: read the text in a logo image
+&gt; { &quot;imageUrl&quot;: &quot;https://three.ws/logo.png&quot;, &quot;prompt&quot;: &quot;What does this logo say?&quot; }
+{
+  &quot;ok&quot;: true,
+  &quot;text&quot;: &quot;The logo reads \&quot;three.ws\&quot;.&quot;,
+  &quot;provider&quot;: &quot;nvidia&quot;,
+  &quot;model&quot;: &quot;nvidia/nemotron-nano-12b-v2-vl&quot;,
+  &quot;prompt&quot;: &quot;What does this logo say?&quot;,
+  &quot;image_source&quot;: &quot;url&quot;
+}
+</code></pre>
+<pre><code class="language-jsonc">// describe_image — alt text from a base64 image
+&gt; { &quot;image&quot;: &quot;data:image/png;base64,iVBORw0KG...&quot;, &quot;detail&quot;: &quot;brief&quot; }
+{
+  &quot;ok&quot;: true,
+  &quot;description&quot;: &quot;A seagull in profile against a blurred coastal background.&quot;,
+  &quot;detail&quot;: &quot;brief&quot;,
+  &quot;provider&quot;: &quot;nvidia&quot;,
+  &quot;model&quot;: &quot;nvidia/nemotron-nano-12b-v2-vl&quot;,
+  &quot;image_source&quot;: &quot;base64&quot;
+}
+</code></pre>
+<pre><code class="language-jsonc">// get_vision_status — gate a &quot;describe this&quot; affordance
+&gt; {}
+{
+  &quot;ok&quot;: true,
+  &quot;configured&quot;: true,
+  &quot;image_types&quot;: [&quot;image/jpeg&quot;, &quot;image/png&quot;, &quot;image/webp&quot;, &quot;image/gif&quot;],
+  &quot;max_image_mb&quot;: 12
+}
+</code></pre>
+<h2 id="examples"><a class="anchor" href="#examples" aria-label="Link to this section">#</a>Examples</h2>
+<p>Runnable, key-free examples live in <a href="https://github.com/nirholas/vision-mcp/blob/main/examples"><code>examples/</code></a>:</p>
+<pre><code class="language-bash">node examples/list-tools.mjs     # every tool with its full input schema
+node examples/read-an-image.mjs  # status + alt text + OCR on a live image
+</code></pre>
+<p>Both spawn this server over stdio and call the real vision pipeline. Every tool
+is read-only, so nothing is stored and nothing is paid. See
+<a href="https://github.com/nirholas/vision-mcp/blob/main/examples/README.md"><code>examples/README.md</code></a> for expected output.</p>
+<p>Images may be JPEG, PNG, WebP, or GIF, up to <strong>12 MB</strong>. Base64 inputs are size-checked locally before upload; <code>imageUrl</code> must be a public <strong>https</strong> URL (the vision server fetches it, so private/loopback hosts are rejected).</p>
+<h2 id="pricing-auth"><a class="anchor" href="#pricing-auth" aria-label="Link to this section">#</a>Pricing &amp; auth</h2>
+<p>There is <strong>no charge to the caller and no key is needed</strong>. The platform runs every request against free NVIDIA NIM vision lanes first and falls back to a paid model only on its own infrastructure — that cost is the platform&#39;s, transparent to you.</p>
+<p>The endpoint is rate-limited per IP. To raise your limit to the per-user tier, set the optional <code>THREE_WS_API_KEY</code> (a three.ws API key); it is sent as a bearer token. It is never required to use the free model.</p>
+<h2 id="requirements"><a class="anchor" href="#requirements" aria-label="Link to this section">#</a>Requirements</h2>
+<ul>
+<li><strong>Node.js &gt;= 20.</strong></li>
+<li>Network access to <code>https://three.ws</code> (or your own <code>THREE_WS_BASE</code>).</li>
+</ul>
+<h3 id="environment-variables"><a class="anchor" href="#environment-variables" aria-label="Link to this section">#</a>Environment variables</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Required</th>
+<th>Default</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>THREE_WS_BASE</code></td>
+<td>no</td>
+<td><code>https://three.ws</code></td>
+<td>Which deployment to call.</td>
+</tr>
+<tr>
+<td><code>THREE_WS_TIMEOUT_MS</code></td>
+<td>no</td>
+<td><code>30000</code></td>
+<td>Per-request timeout (a call may chain across free lanes).</td>
+</tr>
+<tr>
+<td><code>THREE_WS_API_KEY</code></td>
+<td>no</td>
+<td>—</td>
+<td>Optional bearer token to raise the rate limit to per-user.</td>
+</tr>
+</tbody></table>
+<h2 id="links"><a class="anchor" href="#links" aria-label="Link to this section">#</a>Links</h2>
+<ul>
+<li>Homepage: <a href="https://three.ws">https://three.ws</a></li>
+<li>Changelog: <a href="https://three.ws/changelog">https://three.ws/changelog</a></li>
+<li>Issues: <a href="https://github.com/nirholas/three.ws/issues">https://github.com/nirholas/three.ws/issues</a></li>
+<li>License: Apache-2.0, see <a href="https://github.com/nirholas/vision-mcp/blob/main/LICENSE">LICENSE</a></li>
+</ul>
+<hr>
+<p align="center">
+  <sub>
+    Part of the <a href="https://three.ws">three.ws</a> SDK suite — 3D AI agents, on-chain identity, and agent payments.<br/>
+    <a href="https://three.ws">Website</a> · <a href="https://three.ws/changelog">Changelog</a> · <a href="https://github.com/nirholas/three.ws">GitHub</a>
+  </sub>
+</p>
+</main>
+<nav class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#install">Install</a></li><li><a href="#quick-start">Quick start</a></li><li><a href="#tools">Tools</a></li><li><a href="#example">Example</a></li><li><a href="#examples">Examples</a></li><li><a href="#pricing-auth">Pricing &amp; auth</a></li><li><a href="#requirements">Requirements</a></li><li><a href="#links">Links</a></li></ul></nav>
+</div>
+<footer><div class="foot-in"><span>Apache-2.0 licensed</span><a href="https://github.com/nirholas/vision-mcp/issues">Issues</a><a href="https://github.com/nirholas/vision-mcp/blob/main/CONTRIBUTING.md">Contributing</a><a href="https://github.com/nirholas/vision-mcp/security/policy">Security</a><a href="https://three.ws">Part of three.ws</a></div></footer>
+<script>document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
+var t=b.getAttribute('data-copy');var done=function(){var o=b.textContent;b.textContent='Copied';setTimeout(function(){b.textContent=o},1400)};
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){})}
+else{var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){}a.remove()}})});</script>
+</body>
+</html>
