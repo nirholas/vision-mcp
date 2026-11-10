@@ -2,9 +2,19 @@
   "name": "vision-mcp",
   "version": "0.1.2",
   "description": "Let Claude see images: analyze_image, describe_image and get_vision_status over the free three.ws vision pipeline, no key required.",
-  "author": {"name": "nirholas"},
+  "author": {
+    "name": "nirholas"
+  },
   "repository": "https://github.com/nirholas/vision-mcp",
-  "license": "Apache-2.0",
   "homepage": "https://nirholas.github.io/vision-mcp/",
-  "keywords": ["mcp", "vision", "vlm", "image-understanding", "multimodal", "nvidia-nim", "three-ws"]
+  "license": "Apache-2.0",
+  "keywords": [
+    "mcp",
+    "vision",
+    "vlm",
+    "image-understanding",
+    "multimodal",
+    "nvidia-nim",
+    "three-ws"
+  ]
 }
