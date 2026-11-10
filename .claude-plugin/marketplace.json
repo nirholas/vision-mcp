@@ -1,0 +1,13 @@
+{
+  "name": "vision-mcp",
+  "owner": {"name": "nirholas"},
+  "description": "Image understanding MCP server for AI agents, backed by the free three.ws vision pipeline.",
+  "plugins": [
+    {
+      "name": "vision-mcp",
+      "source": "./",
+      "description": "Analyze and describe images (URL or base64) through three.ws vision, read-only, no key required.",
+      "tags": ["mcp", "vision", "image-understanding", "multimodal"]
+    }
+  ]
+}
