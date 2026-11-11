@@ -1,9 +1,0 @@
-{
-  "mcpServers": {
-    "vision": {
-      "command": "npx",
-      "args": ["-y", "@three-ws/vision-mcp"],
-      "env": {"THREE_WS_API_KEY": "${THREE_WS_API_KEY:-}"}
-    }
-  }
-}
